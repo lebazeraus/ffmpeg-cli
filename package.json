@@ -1,0 +1,23 @@
+{
+  "name": "ffmpeg-cli",
+  "version": "1.0.0",
+  "description": "CLI application for processing audio files with FFmpeg",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "audio",
+    "ffmpeg",
+    "cli",
+    "processing"
+  ],
+  "author": "Abel Suárez",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "5.4.1",
+    "cli-progress": "3.12.0",
+    "inquirer": "8.2.5"
+  }
+}
