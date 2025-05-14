@@ -19,33 +19,27 @@ const translations = {
     selectFile: 'Select an audio file to process:',
     analyzingFile: 'Analyzing audio file...',
     fileDuration: 'File duration:',
-    cutType: 'What type of cut do you want to perform?',
-    cutOptions: {
-      none: 'Do not cut the audio (use entire file)',
-      startOnly: 'Remove the beginning (keep from a point to the end)',
-      endOnly: 'Remove the ending (keep from start to a point)',
-      segment: 'Extract middle segment (keep only a specific portion)',
-      custom: 'Manually specify exact start and end points'
-    },
-    startTime: 'Start time for cut (HH:MM:SS):',
-    endTime: 'End time for cut (HH:MM:SS):',
-    segmentStart: 'Start time of segment to keep (HH:MM:SS):',
-    segmentEnd: 'End time of segment to keep (HH:MM:SS):',
-    customStart: 'Custom start time (HH:MM:SS):',
-    customEnd: 'Custom end time (HH:MM:SS):',
-    endAfterStart: 'End time must be after start time',
-    tempoFactor: 'Tempo factor (1.0 = original, >1.0 = faster, <1.0 = slower):',
-    bitrate: 'Bitrate for compression (e.g.: 32k, 64k, 128k):',
+    startTimeFlexible: 'Start time (e.g., 0s, 4s, 1m, 1m 3s, HH:MM:SS):',
+    endTimeFlexible: 'End time (default: {0}, e.g., 4s, 1m, 1m 3s, HH:MM:SS):',
+    endAfterStart: 'End time must be after start time.',
+    askChangeTempo: 'Change tempo factor? (Y/n)',
+    askChangeBitrate: 'Change bitrate? (Y/n)',
+    yes: 'Yes',
+    no: 'No',
+    tempoFactorPrompt: 'Tempo factor (default: 1.25, enter 0 to skip):',
+    bitratePrompt: 'Bitrate (default: 32k, enter 0 to skip):',
     invalidTime: 'Please enter a time in HH:MM:SS format',
-    invalidTempo: 'Please enter a positive number for tempo',
-    invalidBitrate: 'Please enter a valid bitrate (example: 32k, 64k, 128k)',
+    invalidFlexibleTime: 'Invalid time format. Use s, m, h. E.g., 5s, 10m, 1m 30s, 1h, or HH:MM:SS.',
+    errorStartTimeAfterEndTime: 'Start time cannot be after end time.',
+    invalidTempo: 'Please enter a positive number for tempo (or 0 to skip).',
+    invalidBitrate: 'Please enter a valid bitrate (e.g., 32k, 0 to skip).',
     summary: 'Operations summary:',
     selectedFile: 'Selected file:',
     duration: 'Duration:',
     cut: 'Cut:',
     tempo: 'Tempo factor:',
     bitrateLabel: 'Bitrate:',
-    confirm: 'Execute the configured tasks?',
+    confirmMandatory: 'Execute configured tasks? (Y/n):',
     canceled: 'Operation canceled.',
     tempFileCreated: 'Temporary copy created:',
     tempFileError: 'Error creating temporary copy:',
@@ -64,19 +58,18 @@ const translations = {
     previewNoPreview: 'No preview',
     previewPlaying: 'Playing audio preview...',
     previewError: 'Could not play audio preview:',
-    cutDescriptions: {
-      none: 'No cut',
-      startOnly: 'Cut from {0} to the end',
-      endOnly: 'Cut from the beginning to {0}',
-      segment: 'Keep segment from {0} to {1}',
-      custom: 'Custom cut: {0} - {1}'
-    }
+    usingDefaultTempo: 'Using default tempo: {0}',
+    usingDefaultBitrate: 'Using default bitrate: {0}',
+    omittingTempo: 'Skipping tempo change.',
+    omittingBitrate: 'Skipping bitrate change.',
+    cutFromTo: 'Cut from {0} to {1}',
+    entireAudio: 'Entire audio'
   },
   es: {
     appTitle: 'Procesador de Audio CLI',
     languageSelection: 'Seleccione el idioma de la interfaz:',
     spanish: 'Español',
-    english: 'Inglés',
+    english: 'English',
     scanningFiles: 'Escaneando archivos de audio...',
     noFilesFound: 'No se encontraron archivos de audio en el directorio actual.',
     directoryCreated: 'Directorio creado correctamente:',
@@ -84,33 +77,27 @@ const translations = {
     selectFile: 'Seleccione un archivo de audio para procesar:',
     analyzingFile: 'Analizando archivo de audio...',
     fileDuration: 'Duración del archivo:',
-    cutType: '¿Qué tipo de corte desea realizar?',
-    cutOptions: {
-      none: 'No realizar ningún corte (usar audio completo)',
-      startOnly: 'Eliminar la parte inicial (conservar desde un punto hasta el final)',
-      endOnly: 'Eliminar la parte final (conservar desde el inicio hasta un punto)',
-      segment: 'Extraer segmento del medio (conservar sólo una porción específica)',
-      custom: 'Especificar manualmente puntos exactos de inicio y fin'
-    },
-    startTime: 'Tiempo de inicio para el corte (HH:MM:SS):',
-    endTime: 'Tiempo de fin para el corte (HH:MM:SS):',
-    segmentStart: 'Tiempo de inicio del segmento a conservar (HH:MM:SS):',
-    segmentEnd: 'Tiempo de fin del segmento a conservar (HH:MM:SS):',
-    customStart: 'Tiempo de inicio personalizado (HH:MM:SS):',
-    customEnd: 'Tiempo de fin personalizado (HH:MM:SS):',
-    endAfterStart: 'El tiempo de fin debe ser posterior al tiempo de inicio',
-    tempoFactor: 'Factor de tempo (1.0 = original, >1.0 = más rápido, <1.0 = más lento):',
-    bitrate: 'Bitrate para compresión (ej: 32k, 64k, 128k):',
+    startTimeFlexible: 'Tiempo de inicio (ej: 0s, 4s, 1m, 1m 3s, HH:MM:SS):',
+    endTimeFlexible: 'Tiempo de fin (defecto: {0}, ej: 4s, 1m, 1m 3s, HH:MM:SS):',
+    endAfterStart: 'El tiempo de fin debe ser posterior al tiempo de inicio.',
+    askChangeTempo: '¿Desea cambiar el factor de tempo? (S/n)',
+    askChangeBitrate: '¿Desea cambiar el bitrate? (S/n)',
+    yes: 'Sí',
+    no: 'No',
+    tempoFactorPrompt: 'Factor de tempo (defecto: 1.25, ingrese 0 para omitir):',
+    bitratePrompt: 'Bitrate (defecto: 32k, ingrese 0 para omitir):',
     invalidTime: 'Por favor, ingrese un tiempo en formato HH:MM:SS',
-    invalidTempo: 'Por favor, ingrese un número positivo para el tempo',
-    invalidBitrate: 'Por favor, ingrese un bitrate válido (ejemplo: 32k, 64k, 128k)',
+    invalidFlexibleTime: 'Formato de tiempo inválido. Use s, m, h. Ej: 5s, 10m, 1m 30s, 1h, o HH:MM:SS.',
+    errorStartTimeAfterEndTime: 'El tiempo de inicio no puede ser posterior al tiempo de fin.',
+    invalidTempo: 'Por favor, ingrese un número positivo para el tempo (o 0 para omitir).',
+    invalidBitrate: 'Por favor, ingrese un bitrate válido (ej: 32k, 0 para omitir).',
     summary: 'Resumen de operaciones:',
     selectedFile: 'Archivo seleccionado:',
     duration: 'Duración:',
     cut: 'Corte:',
     tempo: 'Factor de tempo:',
     bitrateLabel: 'Bitrate:',
-    confirm: '¿Ejecutar las tareas configuradas?',
+    confirmMandatory: '¿Ejecutar las tareas configuradas? (S/n):',
     canceled: 'Operación cancelada.',
     tempFileCreated: 'Copia temporal creada:',
     tempFileError: 'Error al crear la copia temporal:',
@@ -129,13 +116,12 @@ const translations = {
     previewNoPreview: 'Sin previsualización',
     previewPlaying: 'Reproduciendo vista previa del audio...',
     previewError: 'No se pudo reproducir la vista previa del audio:',
-    cutDescriptions: {
-      none: 'Sin corte',
-      startOnly: 'Cortar desde {0} hasta el final',
-      endOnly: 'Cortar desde el inicio hasta {0}',
-      segment: 'Conservar segmento desde {0} hasta {1}',
-      custom: 'Corte personalizado: {0} - {1}'
-    }
+    usingDefaultTempo: 'Usando tempo por defecto: {0}',
+    usingDefaultBitrate: 'Usando bitrate por defecto: {0}',
+    omittingTempo: 'Omitiendo cambio de tempo.',
+    omittingBitrate: 'Omitiendo cambio de bitrate.',
+    cutFromTo: 'Corte desde {0} hasta {1}',
+    entireAudio: 'Audio completo'
   }
 };
 
@@ -177,10 +163,10 @@ async function selectLanguage() {
     {
       type: 'list',
       name: 'selectedLang',
-      message: 'Select language / Seleccione idioma:',
+      message: t('languageSelection'),
       choices: [
-        { name: 'Español', value: 'es' },
-        { name: 'English', value: 'en' }
+        { name: t('spanish'), value: 'es' },
+        { name: t('english'), value: 'en' }
       ]
     }
   ]);
@@ -233,26 +219,43 @@ function scanForAudioFiles() {
   }
 }
 
-// Get audio duration using FFmpeg
-function getAudioDuration(fileName) {
-  try {
-    // Use FFprobe to get duration
-    const command = `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${fileName}"`;
-    const durationInSeconds = parseFloat(execSync(command).toString().trim());
-    
-    // Convert seconds to HH:MM:SS format
-    const hours = Math.floor(durationInSeconds / 3600);
-    const minutes = Math.floor((durationInSeconds % 3600) / 60);
-    const seconds = Math.floor(durationInSeconds % 60);
-    
-    return {
-      formatted: `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`,
-      seconds: durationInSeconds
-    };
-  } catch (error) {
-    console.warn(chalk.yellow(`Warning: ${error.message}`));
-    return { formatted: '00:30:00', seconds: 1800 }; // Default duration if unable to detect
-  }
+// Get audio duration using ffprobe
+async function getAudioDuration(fileName) {
+  return new Promise((resolve, reject) => {
+    const safeFileName = fileName.replace(/"/g, '\"');
+    const command = `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${safeFileName}"`;
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.error(chalk.red(`Error getting duration with ffprobe for ${fileName}: ${stderr || error.message}. Falling back to ffmpeg.`));
+        const fallbackCommand = `ffmpeg -i "${safeFileName}" 2>&1`;
+        exec(fallbackCommand, (fallError, fallStdout, fallStderr) => {
+            const durationMatch = fallStdout.match(/Duration: (\d{2}):(\d{2}):(\d{2})\.(\d{2})/);
+            if (durationMatch) {
+                const [, hours, minutes, seconds] = durationMatch.slice(1).map(Number);
+                const durationSeconds = hours * 3600 + minutes * 60 + seconds;
+                 resolve({
+                    seconds: durationSeconds,
+                    formattedHHMMSS: formatTimeHHMMSS(durationSeconds),
+                    friendlyFormatted: formatFriendlyDuration(durationSeconds)
+                });
+            } else {
+                 reject(new Error(`Failed to get duration using ffprobe and ffmpeg: ${fallStderr || fallError || 'Unknown error'}`));
+            }
+        });
+        return;
+      }
+      const durationSeconds = parseFloat(stdout);
+      if (isNaN(durationSeconds)) {
+        reject(new Error(`Could not parse duration from ffprobe output: ${stdout}`));
+        return;
+      }
+      resolve({
+        seconds: durationSeconds,
+        formattedHHMMSS: formatTimeHHMMSS(durationSeconds),
+        friendlyFormatted: formatFriendlyDuration(durationSeconds)
+      });
+    });
+  });
 }
 
 // Format time in seconds to HH:MM:SS
@@ -264,10 +267,78 @@ function formatTimeHHMMSS(secondsTotal) {
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Convert HH:MM:SS to seconds
+// Convert HH:MM:SS or MM:SS or SS to seconds
 function timeToSeconds(timeStr) {
-  const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+  if (typeof timeStr !== 'string') return 0;
+  const parts = timeStr.split(':').map(Number);
+  if (parts.some(isNaN)) return 0;
+  let seconds = 0;
+  if (parts.length === 3) { // HH:MM:SS
+    seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+  } else if (parts.length === 2) { // MM:SS
+    seconds = parts[0] * 60 + parts[1];
+  } else if (parts.length === 1) { // SS
+    seconds = parts[0];
+  }
+  return seconds;
+}
+
+// Parse flexible time input (e.g., "1m 30s", "5s", "HH:MM:SS") to seconds
+function parseFlexibleTime(timeStr) {
+  timeStr = String(timeStr).trim().toLowerCase();
+  if (!timeStr && timeStr !== '0') return null; // Distinguish empty from '0'
+  if (timeStr === '0') return 0;
+
+  // Check for HH:MM:SS or MM:SS or SS format first
+  if (/^(\d{1,2}:){0,2}\d{1,2}(\.\d+)?$/.test(timeStr)) {
+      if (/^\d+(\.\d+)?$/.test(timeStr)) { // If just a number, treat as seconds
+          return parseFloat(timeStr);
+      }
+      const parts = timeStr.split(':').map(s => parseFloat(s.trim()));
+      if (parts.some(isNaN)) return null; 
+      let seconds = 0;
+      if (parts.length === 3) { 
+          seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+      } else if (parts.length === 2) { 
+          seconds = parts[0] * 60 + parts[1];
+      } else if (parts.length === 1) { 
+          seconds = parts[0];
+      }
+      return seconds;
+  }
+
+  const regex = /(?:(\d+(?:\.\d+)?)\s*h)?\s*(?:(\d+(?:\.\d+)?)\s*m)?\s*(?:(\d+(?:\.\d+)?)\s*s)?/i;
+  const match = timeStr.match(regex);
+
+  if (!match || match[0] !== timeStr || (match[1] === undefined && match[2] === undefined && match[3] === undefined)) {
+    return null; 
+  }
+
+  const hours = parseFloat(match[1] || '0');
+  const minutes = parseFloat(match[2] || '0');
+  const seconds = parseFloat(match[3] || '0');
+
+  if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+      return null; 
+  }
   return hours * 3600 + minutes * 60 + seconds;
+}
+
+// Format total seconds into a user-friendly string like "1h 12m 3s"
+function formatFriendlyDuration(totalSecondsParam) {
+  let totalSeconds = totalSecondsParam;
+  if (typeof totalSeconds !== 'number' || isNaN(totalSeconds) || totalSeconds < 0) {
+    return '0s';
+  }
+  totalSeconds = Math.round(totalSeconds);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  let parts = [];
+  if (hours > 0) parts.push(`${hours}h`);
+  if (minutes > 0) parts.push(`${minutes}m`);
+  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`);
+  return parts.join(' ') || '0s';
 }
 
 // Create output directory if it doesn't exist
@@ -285,272 +356,86 @@ function createOutputDirectory() {
   }
 }
 
-// Validate time format (HH:MM:SS)
-function validateTimeFormat(time) {
+// Validate time format (HH:MM:SS) - REMOVED as parseFlexibleTime handles validation
+/* function validateTimeFormat(time) {
   const timeRegex = /^([0-9]{2}):([0-9]{2}):([0-9]{2})$/;
   if (!timeRegex.test(time)) {
     return t('invalidTime');
   }
   return true;
+} */
+
+// Validate flexible time format
+function validateFlexibleTimeFormat(time) {
+  const result = parseFlexibleTime(time);
+  if (result === null) {
+    return t('invalidFlexibleTime');
+  }
+  return true;
 }
 
-// Validate tempo value (positive float)
+// Validate tempo value (positive float or 0)
 function validateTempo(tempo) {
   const tempoValue = parseFloat(tempo);
-  if (isNaN(tempoValue) || tempoValue <= 0) {
+  if (isNaN(tempoValue) || tempoValue < 0) { // Allow 0
     return t('invalidTempo');
   }
   return true;
 }
 
-// Validate bitrate format
+// Validate bitrate format (e.g., 32k or 0)
 function validateBitrate(bitrate) {
-  const bitrateRegex = /^[0-9]+k$/;
-  if (!bitrateRegex.test(bitrate)) {
+  if (String(bitrate).trim() === '0') return true; // Allow 0
+  const bitrateRegex = /^\d+k$/i;
+  if (!bitrateRegex.test(String(bitrate).trim())) {
     return t('invalidBitrate');
   }
   return true;
 }
 
-// Get user input for cutting type and parameters
-async function getCuttingParameters(audioDuration) {
-  // Ask for cutting type
-  const { cutType } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'cutType',
-      message: t('cutType'),
-      choices: [
-        { name: t('cutOptions.none'), value: 'none' },
-        { name: t('cutOptions.startOnly'), value: 'startOnly' },
-        { name: t('cutOptions.endOnly'), value: 'endOnly' },
-        { name: t('cutOptions.segment'), value: 'segment' },
-        { name: t('cutOptions.custom'), value: 'custom' }
-      ]
-    }
-  ]);
-  
-  let startTime = '00:00:00';
-  let endTime = audioDuration.formatted;
-  
-  switch (cutType) {
-    case 'none':
-      // No cutting, use defaults
-      break;
-    
-    case 'startOnly':
-      // Only specify start time
-      const { start } = await inquirer.prompt([
-        {
-          type: 'input',
-          name: 'start',
-          message: t('startTime'),
-          default: '00:00:10', // Default to 10 seconds in
-          validate: validateTimeFormat
-        }
-      ]);
-      startTime = start;
-      break;
-    
-    case 'endOnly':
-      // Only specify end time
-      const { end } = await inquirer.prompt([
-        {
-          type: 'input',
-          name: 'end',
-          message: t('endTime'),
-          default: formatTimeHHMMSS(audioDuration.seconds - 10), // Default to 10 seconds before end
-          validate: validateTimeFormat
-        }
-      ]);
-      endTime = end;
-      break;
-    
-    case 'segment':
-      // Specify segment to keep
-      const { segmentStart, segmentEnd } = await inquirer.prompt([
-        {
-          type: 'input',
-          name: 'segmentStart',
-          message: t('segmentStart'),
-          default: '00:00:10',
-          validate: validateTimeFormat
-        },
-        {
-          type: 'input',
-          name: 'segmentEnd',
-          message: t('segmentEnd'),
-          default: formatTimeHHMMSS(audioDuration.seconds - 10),
-          validate: (input) => {
-            const baseValidation = validateTimeFormat(input);
-            if (baseValidation !== true) return baseValidation;
-            
-            const endSecs = timeToSeconds(input);
-            // const startSecs = timeToSeconds(segmentStart);
-            
-            // if (endSecs <= startSecs) {
-            //   return t('endAfterStart');
-            // }
-            
-            return true;
-          }
-        }
-      ]);
+// Build FFmpeg command based on parameters
+function buildFFmpegCommand(params) {
+  const command = ['ffmpeg']; // Agregar 'ffmpeg' como primer elemento
+  command.push('-y'); // Añadir -y después de ffmpeg
+  command.push('-i', params.tempFile);
 
-      startTime = segmentStart;
-      endTime = segmentEnd;
-      break;
-    
-    case 'custom':
-      // Custom cutting - manually specify both
-      const { customStart, customEnd } = await inquirer.prompt([
-        {
-          type: 'input',
-          name: 'customStart',
-          message: t('customStart'),
-          default: '00:00:00',
-          validate: validateTimeFormat
-        },
-        {
-          type: 'input',
-          name: 'customEnd',
-          message: t('customEnd'),
-          default: audioDuration.formatted,
-          validate: (input) => {
-            const baseValidation = validateTimeFormat(input);
-            if (baseValidation !== true) return baseValidation;
-            
-            const endSecs = timeToSeconds(input);
-            const startSecs = timeToSeconds(customStart);
-            
-            if (endSecs <= startSecs) {
-              return t('endAfterStart');
-            }
-            
-            return true;
-          }
-        }
-      ]);
-      startTime = customStart;
-      endTime = customEnd;
-      break;
+  // Apply cut if start or end time is different from defaults
+  if (params.startTimeSeconds > 0) {
+    command.push('-ss', String(params.startTimeSeconds));
+  }
+  if (params.endTimeSeconds < params.audioDuration.seconds) {
+    command.push('-to', String(params.endTimeSeconds));
   }
 
-  return { startTime, endTime, cutType };
+  // Filters - combine tempo and potential future filters
+  let filterComplex = [];
+  if (params.tempo && params.tempo !== 1.0) {
+    filterComplex.push(`atempo=${params.tempo}`);
+  }
+
+  if (filterComplex.length > 0) {
+    command.push('-filter:a', filterComplex.join(','));
+  }
+
+  // Apply bitrate if specified and not 0
+  if (params.bitrate && params.bitrate !== '0') {
+    command.push('-b:a', params.bitrate);
+  }
+
+  // Add output file path
+  command.push(params.outputFile);
+
+  return command;
 }
 
-// Get user input for processing parameters
-async function getUserParameters() {
-  const audioFiles = scanForAudioFiles();
-  
-  // File selection
-  const { selectedFile } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'selectedFile',
-      message: t('selectFile'),
-      choices: audioFiles
-    }
-  ]);
-  
-  // Get audio duration
-  console.log(chalk.blue(t('analyzingFile')));
-  const audioDuration = getAudioDuration(selectedFile);
-  console.log(chalk.green(`${t('fileDuration')} ${audioDuration.formatted}`));
-  
-  // Get cutting parameters
-  const { startTime, endTime, cutType } = await getCuttingParameters(audioDuration, audioDuration.seconds);
-  
-  // Tempo parameters
-  const { tempo } = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'tempo',
-      message: t('tempoFactor'),
-      default: '1.0',
-      validate: validateTempo
-    }
-  ]);
-  
-  // Compression parameters
-  const { bitrate } = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'bitrate',
-      message: t('bitrate'),
-      default: '32k',
-      validate: validateBitrate
-    }
-  ]);
-  
-  return {
-    selectedFile,
-    startTime,
-    endTime,
-    cutType,
-    tempo: parseFloat(tempo),
-    bitrate,
-    audioDuration
-  };
-}
-
-// Preview audio (requires SoX 'play' command)
-async function previewAudio(fileName, startTime = '00:00:00', duration = 5) {
-  try {
-    console.log(chalk.blue(t('previewPlaying')));
-    
-    // Build play command with specified start time and duration
-    const command = `play "${fileName}" trim ${startTime} ${duration} 2>/dev/null`;
-    
-    await new Promise((resolve, reject) => {
-      exec(command, (error) => {
-        if (error && error.code !== 0) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      });
-    });
-    
-    return true;
-  } catch (error) {
-    console.error(chalk.red(`${t('previewError')} ${error.message}`));
-    return false;
+// Get human-readable description of cutting parameters
+function getCutDescription(startTimeSeconds, endTimeSeconds, totalDurationSeconds) {
+  if (startTimeSeconds === 0 && endTimeSeconds >= totalDurationSeconds) {
+    return t('entireAudio');
   }
-}
-
-// Ask user if they want to preview audio
-async function askForPreview(fileName, processedFile = null) {
-  const isSoxInstalled = await checkSox();
-  
-  if (!isSoxInstalled) {
-    return;
-  }
-  
-  const choices = [
-    { name: t('previewOriginal'), value: 'original' }
-  ];
-  
-  if (processedFile && fs.existsSync(processedFile)) {
-    choices.push({ name: t('previewProcessed'), value: 'processed' });
-  }
-  
-  choices.push({ name: t('previewNoPreview'), value: 'none' });
-  
-  const { previewType } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'previewType',
-      message: t('previewOption'),
-      choices: choices
-    }
-  ]);
-  
-  if (previewType === 'original') {
-    await previewAudio(fileName);
-  } else if (previewType === 'processed') {
-    await previewAudio(processedFile);
-  }
+  const startFriendly = formatFriendlyDuration(startTimeSeconds);
+  const endFriendly = formatFriendlyDuration(endTimeSeconds);
+  return t('cutFromTo', startFriendly, endFriendly);
 }
 
 // Create a temporary copy of the file
@@ -564,47 +449,6 @@ function createTempFile(fileName) {
     console.error(chalk.red(`${t('tempFileError')} ${error.message}`));
     process.exit(1);
   }
-}
-
-// Build FFmpeg command based on parameters
-function buildFFmpegCommand(params, tempFile) {
-  const outputFile = path.join(OUTPUT_DIR, params.selectedFile);
-  let command = [];
-  
-  // Add input file
-  command.push('-i', tempFile);
-  
-  // Build filter string for atempo
-  let filterStr = '';
-  if (params.tempo !== 1.0) {
-    filterStr = `atempo=${params.tempo}`;
-  }
-  
-  // Add filter complex if needed
-  if (filterStr) {
-    command.push('-af', filterStr);
-  }
-  
-  // Add time parameters if needed
-  if (params.startTime !== '00:00:00') {
-    command.unshift('-ss', params.startTime);  // Add before input for faster seeking
-  }
-  
-  if (params.endTime !== params.audioDuration.formatted) {
-    command.push('-to', params.endTime);
-  }
-  
-  // Add bitrate
-  command.push('-b:a', params.bitrate);
-  
-  // Force overwrite existing files
-  command.push('-y');
-  
-  // Add output file
-  command.push(outputFile);
-  
-  command.unshift('ffmpeg')
-  return command;
 }
 
 // Execute FFmpeg command with progress bar
@@ -623,7 +467,12 @@ function executeFFmpeg(ffmpegArgs) {
     });
     
     progressBar.start(100, 0);
-    const ffmpeg = spawn(ffmpegArgs[0], ffmpegArgs.slice(1));
+    
+    // Separar el comando 'ffmpeg' de los argumentos
+    const ffmpeg = spawn(ffmpegArgs[0], ffmpegArgs.slice(1), {
+      windowsHide: true,
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
     
     let progress = 0;
     let duration = 0;
@@ -674,90 +523,223 @@ function cleanupTempFile(tempFileName) {
   }
 }
 
-// Get human-readable description of cutting type
-function getCutTypeDescription(params) {
-  switch (params.cutType) {
-    case 'none':
-      return t('cutDescriptions.none');
-    case 'startOnly':
-      return t('cutDescriptions.startOnly', params.startTime);
-    case 'endOnly':
-      return t('cutDescriptions.endOnly', params.endTime);
-    case 'segment':
-      return t('cutDescriptions.segment', params.startTime, params.endTime);
-    case 'custom':
-      return t('cutDescriptions.custom', params.startTime, params.endTime);
-    default:
-      return `${params.startTime} - ${params.endTime}`;
-  }
-}
-
 // Main function to run the application
 async function main() {
   try {
-    // Select language
-    await selectLanguage();
-
-    // Check if FFmpeg is installed
+    // Initial checks
     await checkFFmpeg();
-
-    // Create output directory
+    // await checkSox(); // Optional: Uncomment if preview is essential
     createOutputDirectory();
 
-    // Get user parameters
-    const params = await getUserParameters();
-
-    // Preview original audio if requested (before processing)
-    await askForPreview(params.selectedFile);
-
-    // Show confirmation with parameters summary
-    console.log(chalk.cyan(`\n${t('summary')}`));
-    console.log(chalk.yellow('========================================='));
-    console.log(`${chalk.cyan(t('selectedFile'))} ${chalk.white(params.selectedFile)}`);
-    console.log(`${chalk.cyan(t('duration'))} ${chalk.white(params.audioDuration.formatted)}`);
-    console.log(`${chalk.cyan(t('cut'))} ${chalk.white(getCutTypeDescription(params))}`);
-    console.log(`${chalk.cyan(t('tempo'))} ${chalk.white(params.tempo)}`);
-    console.log(`${chalk.cyan(t('bitrateLabel'))} ${chalk.white(params.bitrate)}`);
+    // 1. Select Language
+    await selectLanguage();
+    console.log(chalk.cyan(t('appTitle')));
     console.log(chalk.yellow('========================================='));
 
-    const { confirmation } = await inquirer.prompt([
+    // 2. Select Audio File
+    const audioFiles = scanForAudioFiles();
+    if (audioFiles.length === 0) {
+      console.log(chalk.red(t('noFilesFound')));
+      return;
+    }
+    const { selectedFile } = await inquirer.prompt([
       {
-        type: 'confirm',
-        name: 'confirmation',
-        message: t('confirm'),
-        default: true
+        type: 'list',
+        name: 'selectedFile',
+        message: t('selectFile'),
+        choices: audioFiles
       }
     ]);
 
-    if (!confirmation) {
+    // Get audio duration
+    console.log(chalk.blue(t('analyzingFile')));
+    const audioDuration = await getAudioDuration(selectedFile);
+    console.log(chalk.green(`${t('fileDuration')} ${audioDuration.friendlyFormatted} (${audioDuration.seconds.toFixed(2)}s)`));
+
+    // 3. Get Cutting Parameters (Directly)
+    let startTimeSeconds = 0;
+    let endTimeSeconds = audioDuration.seconds;
+
+    const { startTimeInput } = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'startTimeInput',
+            message: t('startTimeFlexible'),
+            default: '0s',
+            validate: validateFlexibleTimeFormat
+        }
+    ]);
+    startTimeSeconds = parseFlexibleTime(startTimeInput);
+
+    const { endTimeInput } = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'endTimeInput',
+            message: t('endTimeFlexible', audioDuration.friendlyFormatted),
+            default: audioDuration.friendlyFormatted,
+            validate: (input) => {
+                const isValidFormat = validateFlexibleTimeFormat(input);
+                if (isValidFormat !== true) return isValidFormat;
+                const endSecs = parseFlexibleTime(input);
+                if (endSecs === null) return t('invalidFlexibleTime');
+                if (endSecs < startTimeSeconds) {
+                    return t('errorStartTimeAfterEndTime');
+                }
+                if (endSecs > audioDuration.seconds) {
+                    console.warn(chalk.yellow(`\nWarning: End time ${formatFriendlyDuration(endSecs)} is beyond file duration ${audioDuration.friendlyFormatted}. Will cut up to the end.`));
+                    // No need to return false, just warn. We'll cap it later if needed.
+                }
+                return true;
+            }
+        }
+    ]);
+    // Use parsed end time, but cap at actual duration if user entered higher
+    const parsedEnd = parseFlexibleTime(endTimeInput);
+    endTimeSeconds = Math.min(parsedEnd, audioDuration.seconds);
+    if (endTimeSeconds < startTimeSeconds) endTimeSeconds = startTimeSeconds; // Should be caught by validation, but safety check
+
+
+    // 4. Get Tempo Parameters
+    let tempo = 1.0;
+    const { changeTempoRaw } = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'changeTempoRaw',
+            message: t('askChangeTempo'),
+            default: 'S',
+            validate: (input) => {
+                const normalized = input.toLowerCase();
+                return normalized === 's' || normalized === 'n' ? true : 
+                       'Por favor, ingrese S o n';
+            }
+        }
+    ]);
+
+    const changeTempo = changeTempoRaw.toLowerCase() === 's';
+
+    if (changeTempo) {
+        const { tempoFactor } = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'tempoFactor',
+                message: t('tempoFactorPrompt'),
+                default: '1.25',
+                validate: validateTempo
+            }
+        ]);
+        tempo = parseFloat(tempoFactor);
+        if (tempo === 0) {
+            console.log(chalk.cyan(t('omittingTempo')));
+            tempo = 1.0;
+        } else {
+            console.log(chalk.green(t('usingDefaultTempo', tempo)));
+        }
+    } else {
+        console.log(chalk.cyan(t('omittingTempo')));
+    }
+
+    // 5. Get Bitrate Parameters
+    let bitrate = '0';
+    const { changeBitrateRaw } = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'changeBitrateRaw',
+            message: t('askChangeBitrate'),
+            default: 'S',
+            validate: (input) => {
+                const normalized = input.toLowerCase();
+                return normalized === 's' || normalized === 'n' ? true : 
+                       'Por favor, ingrese S o n';
+            }
+        }
+    ]);
+
+    const changeBitrate = changeBitrateRaw.toLowerCase() === 's';
+
+    if (changeBitrate) {
+        const { bitrateValue } = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'bitrateValue',
+                message: t('bitratePrompt'),
+                default: '32k',
+                validate: validateBitrate
+            }
+        ]);
+        bitrate = String(bitrateValue).trim();
+        if (bitrate === '0') {
+            console.log(chalk.cyan(t('omittingBitrate')));
+        } else {
+            console.log(chalk.green(t('usingDefaultBitrate', bitrate)));
+        }
+    } else {
+        console.log(chalk.cyan(t('omittingBitrate')));
+    }
+
+    // --- Summary --- 
+    console.log(chalk.cyan(`\n${t('summary')}`));
+    console.log(chalk.yellow('========================================='));
+    console.log(`${chalk.cyan(t('selectedFile'))} ${chalk.white(selectedFile)}`);
+    console.log(`${chalk.cyan(t('duration'))} ${chalk.white(audioDuration.friendlyFormatted)}`);
+    console.log(`${chalk.cyan(t('cut'))} ${chalk.white(getCutDescription(startTimeSeconds, endTimeSeconds, audioDuration.seconds))}`);
+    console.log(`${chalk.cyan(t('tempo'))} ${chalk.white(tempo === 0 || tempo === 1.0 ? t('omittingTempo') : tempo)}`);
+    console.log(`${chalk.cyan(t('bitrateLabel'))} ${chalk.white(bitrate === '0' ? t('omittingBitrate') : bitrate)}`);
+    console.log(chalk.yellow('========================================='));
+
+    // 6. Confirmation (Mandatory Y/N or S/N)
+    const { confirmation } = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'confirmation',
+        message: t('confirmMandatory'),
+        validate: (input) => {
+          const lowerInput = input.toLowerCase();
+          if (lang === 'es') {
+            return lowerInput === 's' || lowerInput === 'n' ? true : 'Por favor, ingrese S o n.';
+          } else {
+            return lowerInput === 'y' || lowerInput === 'n' ? true : 'Please enter Y or n.';
+          }
+        }
+      }
+    ]);
+
+    const confirmed = confirmation.toLowerCase() === (lang === 'es' ? 's' : 'y');
+
+    if (!confirmed) {
       console.log(chalk.yellow(t('canceled')));
       return;
     }
 
-    // Create temporary file
-    const tempFileName = createTempFile(params.selectedFile);
-    const outputFile = path.join(OUTPUT_DIR, params.selectedFile);
+    // --- Execution --- 
+    const tempFile = await createTempFile(selectedFile);
+    const outputFileName = `${path.basename(selectedFile, path.extname(selectedFile))}_processed.mp3`;
+    const outputFile = path.join(OUTPUT_DIR, outputFileName);
 
-    try {
-      // Build and execute FFmpeg command
-      const ffmpegArgs = buildFFmpegCommand(params, tempFileName);
-      await executeFFmpeg(ffmpegArgs);
+    const params = {
+        tempFile,
+        outputFile,
+        startTimeSeconds,
+        endTimeSeconds,
+        tempo: tempo === 1.0 ? 0 : tempo, // Pass 0 if tempo is 1.0 to skip filter
+        bitrate,
+        audioDuration
+    };
 
-      console.log(chalk.green(`\n${t('outputSaved')} ${outputFile}`));
+    const ffmpegArgs = buildFFmpegCommand(params);
+    await executeFFmpeg(ffmpegArgs);
 
-      // Preview processed audio if requested
-      await askForPreview(params.selectedFile, outputFile);
+    console.log(chalk.green(`${t('outputSaved')} ${chalk.white(outputFile)}`));
 
-    } finally {
-      // Always attempt to clean up the temporary file
-      cleanupTempFile(tempFileName);
-    }
+    // Cleanup
+    await cleanupTempFile(tempFile);
+
+    // Ask for preview (optional)
+    // await askForPreview(selectedFile, outputFile);
 
   } catch (error) {
     console.error(chalk.red(`\n${t('error')} ${error.message}`));
-    process.exit(1); // Exit with error code
   }
 }
-  
+
 // Start the application
 main();
