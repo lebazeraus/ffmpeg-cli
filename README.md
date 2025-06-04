@@ -1,4 +1,4 @@
-# Audio Processor CLI v2
+# Audio Processor CLI
 
 ## Instrucciones de Instalación
 
@@ -62,7 +62,7 @@ Para utilizar esta aplicación:
 
 ---
 
-# Audio Processor CLI v2
+# Audio Processor CLI
 
 ## Installation Instructions
 
