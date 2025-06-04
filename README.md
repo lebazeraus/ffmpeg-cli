@@ -1,4 +1,4 @@
-# Audio Processor CLI
+# Audio Processor CLI v2
 
 ## Instrucciones de Instalación
 
@@ -16,7 +16,7 @@ Para utilizar esta aplicación:
    ```
    o
    ```bash
-   npm start
+   npm run start
    ```
 
 ## Cómo Funciona la Aplicación
@@ -27,34 +27,42 @@ Para utilizar esta aplicación:
    - Escanea el directorio actual en busca de archivos de audio (.mp3, .wav, .ogg, .flac, .aac).
    - Crea un directorio de salida 'output' si no existe.
 
-2. **Interacción con el Usuario**:
-   - El usuario selecciona un archivo de audio de una lista.
-   - El usuario ingresa parámetros para:
-     - Tiempos de inicio y fin de corte (formatos flexibles: 5s, 1m 30s, 1h, HH:MM:SS).
-     - Ajuste de tempo (1.0 es la velocidad original, 1.25 por defecto).
-     - Bitrate de audio para compresión (ej. 32k).
-   - La aplicación muestra un resumen y solicita confirmación.
+2. **Selección de Operaciones**:
+   - El usuario selecciona un archivo de audio de la lista.
+   - Se presentan tres opciones de procesamiento:
+     1. Cortar el audio
+     2. Modificar el tempo
+     3. Cambiar el bitrate
+   - Cada opción es independiente y opcional.
+   - Si no se selecciona ninguna opción, el proceso termina sin modificar el archivo.
 
-3. **Procesamiento**:
-   - Crea una copia temporal del archivo seleccionado.
-   - Construye un comando FFmpeg basado en los parámetros del usuario.
+3. **Configuración de Operaciones**:
+   Si se seleccionaron operaciones, se solicitarán los parámetros necesarios:
+   - **Para corte**:
+     - Tiempo de inicio (0 para omitir)
+     - Tiempo de fin (0 para omitir)
+     - Soporta formatos: 5s, 1m 30s, 1h, HH:MM:SS
+   - **Para tempo**:
+     - Factor de tempo (1.0 es velocidad original)
+     - Rango permitido: mayor que 0 y hasta 2.5
+   - **Para bitrate**:
+     - Nuevo bitrate en formato XXk (ej: 32k, 64k, 128k)
+
+4. **Procesamiento**:
+   - Construye un comando FFmpeg basado en las opciones seleccionadas.
    - Muestra una barra de progreso durante el procesamiento.
    - Guarda el resultado en el directorio 'output'.
-   - Limpia los archivos temporales automáticamente.
 
-4. **Validación de Entrada**:
-   - Validación de formato de tiempo flexible (5s, 1m, 1h, HH:MM:SS).
-   - Validación del tempo (número positivo o 0 para omitir).
-   - Validación del bitrate (formato como 32k o 0 para omitir).
-
-5. **Manejo de Errores**:
-   - Verifica errores comunes como la falta de FFmpeg.
-   - Maneja errores de operaciones con archivos.
-   - Proporciona mensajes de error comprensibles en el idioma seleccionado.
+5. **Validaciones**:
+   - Verifica que al menos una opción sea seleccionada.
+   - Valida los formatos de tiempo ingresados.
+   - Comprueba que los tiempos sean coherentes con la duración del audio.
+   - Valida el rango del factor de tempo.
+   - Verifica el formato correcto del bitrate.
 
 ---
 
-# Audio Processor CLI
+# Audio Processor CLI v2
 
 ## Installation Instructions
 
@@ -72,7 +80,7 @@ To use this application:
    ```
    or
    ```bash
-   npm start
+   npm run start
    ```
 
 ## How the Application Works
@@ -83,27 +91,35 @@ To use this application:
    - Scans the current directory for audio files (.mp3, .wav, .ogg, .flac, .aac).
    - Creates an 'output' directory if it doesn't exist.
 
-2. **User Interaction**:
-   - User selects an audio file from a list.
-   - User enters parameters for:
-     - Cut start and end times (flexible formats: 5s, 1m 30s, 1h, HH:MM:SS).
-     - Tempo adjustment (1.0 is original speed, 1.25 default).
-     - Audio bitrate for compression (e.g., 32k).
-   - The application shows a summary and asks for confirmation.
+2. **Operation Selection**:
+   - The user selects an audio file from the list.
+   - Three processing options are presented:
+     1. Cut the audio
+     2. Modify the tempo
+     3. Change the bitrate
+   - Each option is independent and optional.
+   - If no option is selected, the process ends without modifying the file.
 
-3. **Processing**:
-   - Creates a temporary copy of the selected file.
-   - Builds an FFmpeg command based on user parameters.
+3. **Operation Settings**:
+   If operations were selected, the necessary parameters will be requested:
+   - **For cutting**:
+     - Start time (0 for omit)
+     - End time (0 for omit)
+     - Supports formats: 5s, 1m 30s, 1h, HH:MM:SS
+   - **For tempo**:
+     - Tempo factor (1.0 is original speed)
+     - Allowed range: greater than 0 and up to 2.5
+   - **For bitrate**:
+     - New bitrate in XXk format (e.g., 32k, 64k, 128k)
+
+4. **Processing**:
+   - Builds an FFmpeg command based on the selected options.
    - Shows a progress bar during processing.
    - Saves the result to the 'output' directory.
-   - Automatically cleans up temporary files.
 
-4. **Input Validation**:
-   - Flexible time format validation (5s, 1m, 1h, HH:MM:SS).
-   - Tempo validation (positive number or 0 to skip).
-   - Bitrate validation (format like 32k or 0 to skip).
-
-5. **Error Handling**:
-   - Checks for common errors like missing FFmpeg.
-   - Handles file operation errors.
-   - Provides user-friendly error messages in the selected language.
+5. **Validations**:
+   - Checks that at least one option is selected.
+   - Validates the entered time formats.
+   - Ensures that the times are consistent with the audio duration.
+   - Validates the tempo factor range.
+   - Checks the correct format of the bitrate.
